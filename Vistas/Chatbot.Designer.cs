@@ -28,13 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.botonSalir = new System.Windows.Forms.Button();
+            this.funcionEtiqueta = new System.Windows.Forms.Label();
+            this.inputUsuario = new System.Windows.Forms.TextBox();
+            this.botonEnviar = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.SuspendLayout();
+            // 
+            // botonSalir
+            // 
+            this.botonSalir.Location = new System.Drawing.Point(408, 316);
+            this.botonSalir.Name = "botonSalir";
+            this.botonSalir.Size = new System.Drawing.Size(75, 23);
+            this.botonSalir.TabIndex = 0;
+            this.botonSalir.Text = "Cerrar";
+            this.botonSalir.UseVisualStyleBackColor = true;
+            // 
+            // funcionEtiqueta
+            // 
+            this.funcionEtiqueta.AutoSize = true;
+            this.funcionEtiqueta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionEtiqueta.Location = new System.Drawing.Point(35, 9);
+            this.funcionEtiqueta.Name = "funcionEtiqueta";
+            this.funcionEtiqueta.Size = new System.Drawing.Size(426, 16);
+            this.funcionEtiqueta.TabIndex = 1;
+            this.funcionEtiqueta.Text = "Este chatbot te ayuda a realizar un pedido de homocinéticas";
+            // 
+            // inputUsuario
+            // 
+            this.inputUsuario.Location = new System.Drawing.Point(89, 266);
+            this.inputUsuario.Name = "inputUsuario";
+            this.inputUsuario.Size = new System.Drawing.Size(248, 20);
+            this.inputUsuario.TabIndex = 2;
+            // 
+            // botonEnviar
+            // 
+            this.botonEnviar.Location = new System.Drawing.Point(343, 264);
+            this.botonEnviar.Name = "botonEnviar";
+            this.botonEnviar.Size = new System.Drawing.Size(75, 23);
+            this.botonEnviar.TabIndex = 3;
+            this.botonEnviar.Text = "Enviar";
+            this.botonEnviar.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(89, 45);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(299, 194);
+            this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "";
+            // 
+            // Chatbot
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(495, 348);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.botonEnviar);
+            this.Controls.Add(this.inputUsuario);
+            this.Controls.Add(this.funcionEtiqueta);
+            this.Controls.Add(this.botonSalir);
+            this.Name = "Chatbot";
+            this.Text = "Chatbot";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button botonSalir;
+        private System.Windows.Forms.Label funcionEtiqueta;
+        private System.Windows.Forms.TextBox inputUsuario;
+        private System.Windows.Forms.Button botonEnviar;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
