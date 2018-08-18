@@ -32,7 +32,7 @@
             this.funcionEtiqueta = new System.Windows.Forms.Label();
             this.inputUsuario = new System.Windows.Forms.TextBox();
             this.botonEnviar = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.cajaTextoGrande = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // botonSalir
@@ -60,6 +60,7 @@
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(248, 20);
             this.inputUsuario.TabIndex = 2;
+            this.inputUsuario.TextChanged += new System.EventHandler(this.InputUsuario_TextChanged);
             // 
             // botonEnviar
             // 
@@ -69,21 +70,24 @@
             this.botonEnviar.TabIndex = 3;
             this.botonEnviar.Text = "Enviar";
             this.botonEnviar.UseVisualStyleBackColor = true;
+            this.botonEnviar.Click += new System.EventHandler(this.BotonEnviar_Click);
             // 
-            // richTextBox1
+            // cajaTextoGrande
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(89, 45);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(299, 194);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.cajaTextoGrande.Location = new System.Drawing.Point(89, 45);
+            this.cajaTextoGrande.Name = "cajaTextoGrande";
+            this.cajaTextoGrande.ReadOnly = true;
+            this.cajaTextoGrande.Size = new System.Drawing.Size(299, 194);
+            this.cajaTextoGrande.TabIndex = 4;
+            this.cajaTextoGrande.Text = "";
+            this.cajaTextoGrande.TextChanged += new System.EventHandler(this.cajaTextoGrande_TextChanged);
             // 
             // Chatbot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(495, 348);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.cajaTextoGrande);
             this.Controls.Add(this.botonEnviar);
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.funcionEtiqueta);
@@ -101,7 +105,7 @@
         private System.Windows.Forms.Label funcionEtiqueta;
         private System.Windows.Forms.TextBox inputUsuario;
         private System.Windows.Forms.Button botonEnviar;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox cajaTextoGrande;
     }
 }
 

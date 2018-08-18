@@ -16,5 +16,20 @@ namespace Vistas
         {
             InitializeComponent();
         }
+
+        private void cajaTextoGrande_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InputUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BotonEnviar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
