@@ -27,7 +27,7 @@ namespace Chatbot.controladores
 
         public void start()
         {
-            vistaChatbot.start();
+            vistaChatbot.show(true);
         }
 
         public void beginDialog(int seed, Log log)
@@ -39,35 +39,35 @@ namespace Chatbot.controladores
                 if (Hora >= 6 && Hora < 12)
                 {
                     saludo = timeStamp("Chatbot: Buenos Dias, ¿Cuál es tu nombre?");
-                    System.out.println("Chatbot: Buenos Dias, Cual es tu nombre?");
-                    log.addLog(log.getLog(), saludo);
+                    //System.out.println("Chatbot: Buenos Dias, Cual es tu nombre?");
+                    //log.addLog(log.log, saludo);
                 }
                 else if (Hora >= 12 && Hora < 20)
                 {
                     saludo = timeStamp("Chatbot: Buenas Tardes, ¿Cuál es tu nombre?");
-                    System.out.println("Chatbot: Buenas Tardes, Cual es tu nombre?");
-                    log.addLog(log.getLog(), saludo);
+                    //System.out.println("Chatbot: Buenas Tardes, Cual es tu nombre?");
+                    //log.addLog(log.log, saludo);
                 }
                 else if (Hora > 20)
                 {
                     saludo = timeStamp("Chatbot: Buenas Noches, ¿Cuál es tu nombre?");
-                    System.out.println("Chatbot: Buenas Noches, Cual es tu nombre?");
-                    log.addLog(log.getLog(), saludo);
+                    //System.out.println("Chatbot: Buenas Noches, Cual es tu nombre?");
+                    //log.addLog(log.log, saludo);
                 }
                 else
                 {
                     saludo = timeStamp("Chatbot: Buenas, ¿Cuál es tu nombre?");
-                    System.out.println("Chatbot: Buenas, Cual es tu nombre?");
-                    log.addLog(log.getLog(), saludo);
+                    //System.out.println("Chatbot: Buenas, Cual es tu nombre?");
+                    //log.addLog(log.log, saludo);
                 }
             }
             else
             {
                 saludo = timeStamp("Chatbot: Buena!, Cómo te llamas?");
-                System.out.println("Chatbot: Buena!, Como te llamas?");
-                log.addLog(log.getLog(), saludo);
+                //System.out.println("Chatbot: Buena!, Como te llamas?");
+                //log.addLog(log.log, saludo);
             }
-            log.addLog(log.getLog(), "|Nombre|");
+            //log.addLog(log.log, "|Nombre|");
         }
 
         public int getHora()

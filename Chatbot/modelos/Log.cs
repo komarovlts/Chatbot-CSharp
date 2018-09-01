@@ -8,7 +8,7 @@ namespace Chatbot.modelos
 {
     public class Log
     {
-        private List<String> log { get; set; }
+        public List<String> log { get; set; }
 
         public Log()
         {

@@ -13,17 +13,19 @@ namespace Chatbot.vistas
 {
     public partial class VistaChatbot : Form
     {
-        public ControladorChatbot controlador { get; set; }
+        public ControladorDialogo controladorDialogo;
 
         public VistaChatbot()
         {
             InitializeComponent();
         }
 
-        public void start()
+        public void show(bool mostrar)
         {
-            Application.EnableVisualStyles();
-            Application.Run(new VistaChatbot());
+            if(mostrar == true)
+                this.Show();
+            else
+                this.Hide();
         }
 
         private void botonSalir_Click(object sender, EventArgs e)

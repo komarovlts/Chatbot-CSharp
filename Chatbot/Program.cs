@@ -16,8 +16,8 @@ namespace Chatbot
         [STAThread]
         static void Main()
         {
-            ControladorChatbot controladorChatbot = new ControladorChatbot();
-            controladorChatbot.start();
+            ControladorDialogo controladorDialogo = new ControladorDialogo();
+            controladorDialogo.start();
         }
     }
 }
