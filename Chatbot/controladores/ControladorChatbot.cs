@@ -157,15 +157,15 @@ namespace Chatbot.controladores
             });
         }
 
-        public void saveLog()
+        public void saveLog(String pathFile)
         {
-            controladorDialogo.saveLog();
+            controladorDialogo.saveLog(pathFile);
             vistaChatbot.ventanaExitoSaveLog();
         }
 
-        public void loadLog()
+        public void loadLog(String pathFile)
         {
-            controladorDialogo.loadLog();
+            controladorDialogo.loadLog(pathFile);
             vistaChatbot.ventanaExitoLoadLog();
         }
     }

@@ -64,12 +64,28 @@ namespace Chatbot.vistas
 
         private void botonGuardarLog_Click(object sender, EventArgs e)
         {
-            this.controladorChatbot.saveLog();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Documento de Texto|*.txt";
+            saveFileDialog.Title = "Guardar el log en";
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName != "")
+            {
+                this.controladorChatbot.saveLog(saveFileDialog.FileName);
+            }
         }
 
         private void botonCargarLog_Click(object sender, EventArgs e)
         {
-            this.controladorChatbot.loadLog();
+            
+            // Código obtenido desde documentación oficial.  
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Documento de Texto|*.txt";
+            openFileDialog.Title = "Buscando Log";
+
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.controladorChatbot.loadLog(openFileDialog.FileName);
+            }
         }
 
         internal void vaciarChat()

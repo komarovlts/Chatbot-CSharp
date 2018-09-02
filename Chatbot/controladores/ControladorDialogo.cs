@@ -70,14 +70,14 @@ namespace Chatbot.controladores
             vistaDialogo.start(this);
         }
 
-        public void saveLog()
+        public void saveLog(String pathFile)
         {
-            controladorLog.log.saveLog();
+            controladorLog.log.saveLog(pathFile);
         }
 
-        public void loadLog()
+        public void loadLog(String pathFile)
         {
-            controladorLog.cargarLog();
+            controladorLog.cargarLog(pathFile);
             rellenarChat();
         }
 

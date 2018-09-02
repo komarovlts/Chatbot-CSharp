@@ -41,11 +41,11 @@ namespace Chatbot.modelos
             return repeticiones;
         }
 
-        public void saveLog()
+        public void saveLog(String pathFile)
         {
             try
             {
-                StreamWriter sw = new StreamWriter("C:\\Users\\omarc\\Desktop\\Test1.txt");
+                StreamWriter sw = new StreamWriter(pathFile);
                 this.log.ForEach(delegate (String text)
                 {
                     sw.WriteLine(text);
@@ -63,13 +63,13 @@ namespace Chatbot.modelos
 
         }
 
-        public List<String> loadLog()
+        public List<String> loadLog(String pathFile)
         {
             List<String> loadLog = new List<String>();
             string linea = "";
             try
             {
-                StreamReader objReader = new StreamReader("C:\\Users\\omarc\\Desktop\\Test.txt");
+                StreamReader objReader = new StreamReader(pathFile);
 
                 while (linea != null)
                 {
