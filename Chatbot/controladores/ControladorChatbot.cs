@@ -73,7 +73,8 @@ namespace Chatbot.controladores
             } while (Tthen.AddSeconds(2) > DateTime.Now);
             vistaRate = new VistaRate();
             startRate();
-            vistaChatbot.Close();
+            vistaChatbot.vaciarChat();
+            vistaChatbot.show(false);
             return mensaje;
         }
         public void addDelay()
