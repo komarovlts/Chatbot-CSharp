@@ -61,5 +61,39 @@ namespace Chatbot.vistas
         {
             this.controladorChatbot.finalizador();
         }
+
+        private void botonGuardarLog_Click(object sender, EventArgs e)
+        {
+            this.controladorChatbot.saveLog();
+        }
+
+        private void botonCargarLog_Click(object sender, EventArgs e)
+        {
+            this.controladorChatbot.loadLog();
+        }
+
+        internal void vaciarChat()
+        {
+            this.cajaTextoGrande.Clear();
+            this.cajaTextoGrande.Focus();
+        }
+
+        internal void ventanaExitoLoadLog()
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            DialogResult result;
+
+            result = MessageBox.Show("El log ha sido cargado exitosamente.", "Éxito", buttons);
+        }
+
+        internal void ventanaExitoSaveLog()
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            DialogResult result;
+
+            result = MessageBox.Show("El log ha sido guardado exitosamente.", "Éxito", buttons);
+        }
+
+        
     }
 }

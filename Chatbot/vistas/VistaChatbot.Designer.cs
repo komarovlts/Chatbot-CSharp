@@ -81,6 +81,7 @@
             this.botonCargarLog.TabIndex = 9;
             this.botonCargarLog.Text = "Cargar Log";
             this.botonCargarLog.UseVisualStyleBackColor = true;
+            this.botonCargarLog.Click += new System.EventHandler(this.botonCargarLog_Click);
             // 
             // botonGuardarLog
             // 
@@ -90,6 +91,7 @@
             this.botonGuardarLog.TabIndex = 10;
             this.botonGuardarLog.Text = "Guardar Log";
             this.botonGuardarLog.UseVisualStyleBackColor = true;
+            this.botonGuardarLog.Click += new System.EventHandler(this.botonGuardarLog_Click);
             // 
             // botonEndDialog
             // 

@@ -145,5 +145,28 @@ namespace Chatbot.controladores
             stringFinal = "[" + timeStamp + "] " + mensaje;
             return stringFinal;
         }
+
+        public void rellenarChat(List<String> loadLog)
+        {
+            vistaChatbot.vaciarChat();
+            loadLog.ForEach(delegate (String text)
+            {
+                if(!Equals(text,"|Nombre|") && !Equals(text,"|Respuesta1|") && !Equals(text,"|Respuesta2|") && !Equals(text,"|Respuesta3|") &&
+                !Equals(text,"|Respuesta4|") && !Equals(text,"|Listo para Finalizar|") && !Equals(text,"|Fin de la Conversación|"))
+                vistaChatbot.escribirEnCajaTextoGrande(text);
+            });
+        }
+
+        public void saveLog()
+        {
+            controladorDialogo.saveLog();
+            vistaChatbot.ventanaExitoSaveLog();
+        }
+
+        public void loadLog()
+        {
+            controladorDialogo.loadLog();
+            vistaChatbot.ventanaExitoLoadLog();
+        }
     }
 }

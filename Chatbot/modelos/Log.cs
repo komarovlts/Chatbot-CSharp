@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,56 @@ namespace Chatbot.modelos
                 }
             }
             return repeticiones;
+        }
+
+        public void saveLog()
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter("C:\\Users\\omarc\\Desktop\\Test1.txt");
+                this.log.ForEach(delegate (String text)
+                {
+                    sw.WriteLine(text);
+                });
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Executing finally block.");
+            }
+
+        }
+
+        public List<String> loadLog()
+        {
+            List<String> loadLog = new List<String>();
+            string linea = "";
+            try
+            {
+                StreamReader objReader = new StreamReader("C:\\Users\\omarc\\Desktop\\Test.txt");
+
+                while (linea != null)
+                {
+                    linea = objReader.ReadLine();
+                    if (linea != null)
+                        log.Add(linea);
+                }
+                objReader.Close();
+                return loadLog;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Executing finally block.");
+            }
+            return loadLog;
         }
 
     }

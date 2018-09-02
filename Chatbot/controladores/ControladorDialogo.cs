@@ -70,6 +70,22 @@ namespace Chatbot.controladores
             vistaDialogo.start(this);
         }
 
+        public void saveLog()
+        {
+            controladorLog.log.saveLog();
+        }
+
+        public void loadLog()
+        {
+            controladorLog.cargarLog();
+            rellenarChat();
+        }
+
+        public void rellenarChat()
+        {
+            controladorChatbot.rellenarChat(controladorLog.log.log);
+        }
+
         public void addDatosUtiles()
         {
             guardarMensaje("--------Datos Utiles--------");

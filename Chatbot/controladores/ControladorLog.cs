@@ -25,5 +25,16 @@ namespace Chatbot.controladores
         {
             return this.log.getUltimo();
         }
+
+        public void cargarLog()
+        {
+            List<String> loadLog = new List<String>();
+            this.log = new Log();
+            loadLog = this.log.loadLog();
+            loadLog.ForEach(delegate (String text)
+            {
+                log.addLog(text);
+            });
+        }
     }
 }
