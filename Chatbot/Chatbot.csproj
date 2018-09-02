@@ -43,10 +43,14 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controladores\ControladorChatbot.cs" />
     <Compile Include="controladores\ControladorDialogo.cs" />
+    <Compile Include="controladores\ControladorLog.cs" />
+    <Compile Include="controladores\ControladorUsuario.cs" />
+    <Compile Include="modelos\Sellerbot.cs" />
     <Compile Include="modelos\Log.cs" />
     <Compile Include="modelos\Usuario.cs" />
     <Compile Include="Program.cs" />
@@ -63,6 +67,12 @@
     <Compile Include="vistas\VistaDialogo.Designer.cs">
       <DependentUpon>VistaDialogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistas\VistaRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\VistaRate.Designer.cs">
+      <DependentUpon>VistaRate.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -77,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vistas\VistaDialogo.resx">
       <DependentUpon>VistaDialogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\VistaRate.resx">
+      <DependentUpon>VistaRate.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

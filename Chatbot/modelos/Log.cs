@@ -15,17 +15,15 @@ namespace Chatbot.modelos
             this.log = new List<String>();
         }
 
-        public List<String> addLog(List<String> log, String mensaje)
+        public void addLog(String mensaje)
         {
-            this.log = log;
-            log.Add(mensaje);
-            return log;
+            this.log.Add(mensaje);
         }
 
-        public String getUltimo(List<String> log)
+        public String getUltimo()
         {
             String ultimoElemento;
-            ultimoElemento = log.LastOrDefault<String>();
+            ultimoElemento = this.log.LastOrDefault<String>();
             return ultimoElemento;
         }
 

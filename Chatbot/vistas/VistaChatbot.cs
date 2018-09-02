@@ -13,11 +13,17 @@ namespace Chatbot.vistas
 {
     public partial class VistaChatbot : Form
     {
-        public ControladorDialogo controladorDialogo;
+        ControladorChatbot controladorChatbot;
 
         public VistaChatbot()
         {
             InitializeComponent();
+        }
+
+        public void start(ControladorChatbot controladorChatbot)
+        {
+            this.controladorChatbot = controladorChatbot;
+            this.Show();
         }
 
         public void show(bool mostrar)
@@ -28,9 +34,32 @@ namespace Chatbot.vistas
                 this.Hide();
         }
 
+        internal String adquirirDeCajaTexto()
+        {
+            String respuestaUsuario;
+            respuestaUsuario = inputUsuario.Text;
+            inputUsuario.Text = "";
+            return respuestaUsuario;
+        }
+
+        internal void escribirEnCajaTextoGrande(String texto)
+        {
+            this.cajaTextoGrande.AppendText(texto + System.Environment.NewLine);
+        }
+
         private void botonSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.controladorChatbot.back();
+        }
+
+        private void botonEnviar_Click(object sender, EventArgs e)
+        {
+            this.controladorChatbot.interaccionConUsuario();
+        }
+
+        private void botonEndDialog_Click(object sender, EventArgs e)
+        {
+            this.controladorChatbot.finalizador();
         }
     }
 }

@@ -13,17 +13,18 @@ namespace Chatbot.vistas
 {
     public partial class VistaDialogo : Form
     {
-        public ControladorDialogo controladorDialogo { get; set; }
+        private ControladorDialogo controladorDialogo;
 
         public VistaDialogo()
         {
             InitializeComponent();
         }
 
-        public void start()
+        public void start(ControladorDialogo controladorDialogo)
         {
+            this.controladorDialogo = controladorDialogo;
             Application.EnableVisualStyles();
-            Application.Run(new VistaDialogo());
+            Application.Run(this);
         }
 
         public void show(bool mostrar)
@@ -36,21 +37,32 @@ namespace Chatbot.vistas
 
         private void botonChatbotFormal_Click(object sender, EventArgs e)
         {
-            controladorDialogo = new ControladorDialogo();
             controladorDialogo.iniciarDialogo(1);
-            this.Hide();
+            this.show(false);
         }
 
         private void botonChatbotInformal_Click(object sender, EventArgs e)
         {
-            controladorDialogo = new ControladorDialogo();
             controladorDialogo.iniciarDialogo(0);
-            this.Hide();
+            this.show(false);
+        }
+
+        internal void mostrarDialogoSalir()
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show("¿Realmente desea salir?", "¿Salir?", buttons);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void botonSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            mostrarDialogoSalir();            
         }
     }
 }

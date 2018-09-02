@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using Chatbot.modelos;
 using Chatbot.vistas;
@@ -14,72 +14,125 @@ namespace Chatbot.controladores
     public class ControladorChatbot
     {
         private VistaChatbot vistaChatbot;
-        private Usuario nuevoUsuario;
-        private int personalidad { get; set; }
-        private List<int> evaluaciones;
+        private VistaRate vistaRate;
+        private ControladorDialogo controladorDialogo;
+        public Usuario usuario;
+        public Sellerbot chatbot;
+        private String mensaje;
 
         public ControladorChatbot()
         {
             vistaChatbot = new VistaChatbot();
-            this.personalidad = 1;
-            this.evaluaciones = new List<int>();
         }
 
         public void start()
         {
-            vistaChatbot.show(true);
+            vistaChatbot.start(this);
         }
 
-        public void beginDialog(int seed, Log log)
+        public void startRate()
         {
-            int Hora = getHora();
-            String saludo;
-            if (seed == 1)
-            {
-                if (Hora >= 6 && Hora < 12)
-                {
-                    saludo = timeStamp("Chatbot: Buenos Dias, ¿Cuál es tu nombre?");
-                    //System.out.println("Chatbot: Buenos Dias, Cual es tu nombre?");
-                    //log.addLog(log.log, saludo);
-                }
-                else if (Hora >= 12 && Hora < 20)
-                {
-                    saludo = timeStamp("Chatbot: Buenas Tardes, ¿Cuál es tu nombre?");
-                    //System.out.println("Chatbot: Buenas Tardes, Cual es tu nombre?");
-                    //log.addLog(log.log, saludo);
-                }
-                else if (Hora > 20)
-                {
-                    saludo = timeStamp("Chatbot: Buenas Noches, ¿Cuál es tu nombre?");
-                    //System.out.println("Chatbot: Buenas Noches, Cual es tu nombre?");
-                    //log.addLog(log.log, saludo);
-                }
-                else
-                {
-                    saludo = timeStamp("Chatbot: Buenas, ¿Cuál es tu nombre?");
-                    //System.out.println("Chatbot: Buenas, Cual es tu nombre?");
-                    //log.addLog(log.log, saludo);
-                }
-            }
-            else
-            {
-                saludo = timeStamp("Chatbot: Buena!, Cómo te llamas?");
-                //System.out.println("Chatbot: Buena!, Como te llamas?");
-                //log.addLog(log.log, saludo);
-            }
-            //log.addLog(log.log, "|Nombre|");
+            vistaRate.start(this);
         }
 
-        public int getHora()
+        public void adquirirEvaluaciones()
         {
-            DateTime momentoActual = DateTime.Now;
-            int hora = momentoActual.Hour;
-            return hora;
+            int evaluacion = vistaRate.adquirirEvaluacion();
+            chatbot.evaluaciones = evaluacion;
+            controladorDialogo.addDatosUtiles();
+            vistaRate.Close();
+            controladorDialogo.back();
+        }
+
+        public void back()
+        {
+            vistaChatbot.show(false);
+            controladorDialogo.back();
+        }
+
+        public String iniciarConversacion(int personalidad, ControladorDialogo controladorDialogo)
+        {
+            usuario = new Usuario();
+            chatbot = new Sellerbot();
+            this.controladorDialogo = controladorDialogo;
+            chatbot.personalidad = personalidad;
+            start();
+            mensaje = timeStamp(chatbot.beginDialog(personalidad));
+            vistaChatbot.escribirEnCajaTextoGrande(mensaje);
+            return mensaje;
+        }
+
+        public String finalizarConversacion()
+        {
+            mensaje = timeStamp(chatbot.endDialog());
+            vistaChatbot.escribirEnCajaTextoGrande(mensaje);
+            DateTime Tthen = DateTime.Now;
+            do
+            {
+                Application.DoEvents();
+            } while (Tthen.AddSeconds(2) > DateTime.Now);
+            vistaRate = new VistaRate();
+            startRate();
+            vistaChatbot.Close();
+            return mensaje;
+        }
+        public void addDelay()
+        {
+            int milliseconds = 2000;
+            Thread.Sleep(milliseconds);
+        }
+
+        public void finalizador()
+        {
+            controladorDialogo.FinalizarDialogo();
+        }
+
+        public void interaccionConUsuario()
+        {
+            controladorDialogo.interactuar();
+        }
+
+        public List<String> adquirirRespuesta()
+        {
+            List<String> mensajes = new List<String>();
+            List<String> listaConversacion = new List<String>();
+            String respuestaUsuario;
+            String identificador;
+            respuestaUsuario = vistaChatbot.adquirirDeCajaTexto();
+            if (respuestaUsuario != "")
+            {
+                identificador = controladorDialogo.adquirirIdentificador();
+                if (Equals(identificador, "|Nombre|")) {
+                    usuario.nombreUsuario = respuestaUsuario;
+                }
+                /*else if (Equals(identificador, "|Fin de la Conversación|"))
+                {
+                    mensajes.Add(timeStamp(respuestaUsuario));
+                    mensajes.Add(timeStamp("Chatbot: La conversación ya ha finalizado, por favor inicie una nueva conversación."));
+                    mensajes.Add(identificador);
+                }*/
+                vistaChatbot.escribirEnCajaTextoGrande(timeStamp("Usuario: " + respuestaUsuario));
+                listaConversacion = conversacion(respuestaUsuario, identificador);
+                vistaChatbot.escribirEnCajaTextoGrande(timeStamp(listaConversacion[0]));
+                mensajes.Add(timeStamp(respuestaUsuario));
+                mensajes.Add(timeStamp(listaConversacion[0]));
+                mensajes.Add(listaConversacion[1]);
+                return mensajes;
+            }
+            //Revisar esto.
+            return mensajes;
+        }
+
+        public List<String> conversacion(String respuestaUsuario,String identificador)
+        {
+            List<String> mensajes;
+            mensajes = chatbot.dialog(respuestaUsuario, identificador);
+            return mensajes;
         }
 
         public String tiempoActual()
         {
-            DateTime datosLocales = DateTime.Today;
+            DateTime datosLocales = DateTime.Now;
             String tiempoActual;
             tiempoActual = (datosLocales.ToString());
             return tiempoActual;
@@ -87,24 +140,10 @@ namespace Chatbot.controladores
 
         public String timeStamp(String mensaje)
         {
-            DateTime localDate = DateTime.Now;
             String stringFinal, timeStamp;
             timeStamp = tiempoActual();
-            stringFinal = timeStamp + mensaje;
+            stringFinal = "[" + timeStamp + "] " + mensaje;
             return stringFinal;
         }
-
-        /*public void addDatosFinales(Log log, Usuario usuario)
-        {
-            log.addLog(log.getLog(), "--------Datos Utiles--------");
-            log.addLog(log.getLog(), "----Usuario----");
-            log.addLog(log.getLog(), "Nombre: " + usuario.getNombreUsuario());
-            log.addLog(log.getLog(), "----Chatbot----");
-            log.addLog(log.getLog(), "Personalidad: " + personalidad);
-            log.addLog(log.getLog(), "----Evaluaciones----");
-            log.addLog(log.getLog(), (String)evaluaciones.get(0));
-            log.addLog(log.getLog(), (String)evaluaciones.get(1));
-            log.addLog(log.getLog(), "--------Fin Datos Utiles--------");
-        }*/
     }
 }
