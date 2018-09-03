@@ -49,7 +49,6 @@
     <Compile Include="controladores\ControladorChatbot.cs" />
     <Compile Include="controladores\ControladorDialogo.cs" />
     <Compile Include="controladores\ControladorLog.cs" />
-    <Compile Include="controladores\ControladorUsuario.cs" />
     <Compile Include="modelos\Sellerbot.cs" />
     <Compile Include="modelos\Log.cs" />
     <Compile Include="modelos\Usuario.cs" />

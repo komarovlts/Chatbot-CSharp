@@ -44,6 +44,11 @@ namespace Chatbot.controladores
         {
             List<String> interacciones = controladorChatbot.adquirirRespuesta();
             guardarMensaje(interacciones);
+            String identificador = adquirirIdentificador();
+            if (Equals(identificador, "|Listo para Finalizar|"))
+            {
+                controladorChatbot.cambiarEstadoBotonEnviar(false);
+            }
         }
 
         public void guardarMensaje(String mensaje)

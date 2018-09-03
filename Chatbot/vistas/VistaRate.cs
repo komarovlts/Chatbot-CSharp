@@ -37,7 +37,7 @@ namespace Chatbot.vistas
         public int adquirirEvaluacion()
         {
             int index = rateScroll.SelectedIndex;
-            return index;
+            return index+1;
         }
 
         private void botonEvaluar_Click(object sender, EventArgs e)

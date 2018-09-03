@@ -93,6 +93,10 @@ namespace Chatbot.vistas
             this.cajaTextoGrande.Clear();
             this.cajaTextoGrande.Focus();
         }
+        internal void estadoBotonEnviar(bool activar)
+        {
+            this.botonEnviar.Enabled = activar;
+        }
 
         internal void ventanaExitoLoadLog()
         {

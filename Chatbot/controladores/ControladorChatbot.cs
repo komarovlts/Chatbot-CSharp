@@ -57,6 +57,7 @@ namespace Chatbot.controladores
             this.controladorDialogo = controladorDialogo;
             chatbot.personalidad = personalidad;
             start();
+            cambiarEstadoBotonEnviar(true);
             mensaje = timeStamp(chatbot.beginDialog(personalidad));
             vistaChatbot.escribirEnCajaTextoGrande(mensaje);
             return mensaje;
@@ -106,12 +107,6 @@ namespace Chatbot.controladores
                 if (Equals(identificador, "|Nombre|")) {
                     usuario.nombreUsuario = respuestaUsuario;
                 }
-                /*else if (Equals(identificador, "|Fin de la Conversación|"))
-                {
-                    mensajes.Add(timeStamp(respuestaUsuario));
-                    mensajes.Add(timeStamp("Chatbot: La conversación ya ha finalizado, por favor inicie una nueva conversación."));
-                    mensajes.Add(identificador);
-                }*/
                 vistaChatbot.escribirEnCajaTextoGrande(timeStamp("Usuario: " + respuestaUsuario));
                 listaConversacion = conversacion(respuestaUsuario, identificador);
                 vistaChatbot.escribirEnCajaTextoGrande(timeStamp(listaConversacion[0]));
@@ -122,6 +117,11 @@ namespace Chatbot.controladores
             }
             //Revisar esto.
             return mensajes;
+        }
+
+        public void cambiarEstadoBotonEnviar(bool activar)
+        {
+            vistaChatbot.estadoBotonEnviar(activar);
         }
 
         public List<String> conversacion(String respuestaUsuario,String identificador)
