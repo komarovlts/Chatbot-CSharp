@@ -11,16 +11,27 @@ namespace Chatbot.modelos
     {
         public List<String> log { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Log"/> class.
+        /// </summary>
         public Log()
         {
             this.log = new List<String>();
         }
 
+        /// <summary>
+        /// Adds the log.
+        /// </summary>
+        /// <param name="mensaje">The mensaje.</param>
         public void addLog(String mensaje)
         {
             this.log.Add(mensaje);
         }
 
+        /// <summary>
+        /// Gets the ultimo.
+        /// </summary>
+        /// <returns></returns>
         public String getUltimo()
         {
             String ultimoElemento;
@@ -28,6 +39,10 @@ namespace Chatbot.modelos
             return ultimoElemento;
         }
 
+        /// <summary>
+        /// Searches the repeticiones.
+        /// </summary>
+        /// <returns></returns>
         public int searchRepeticiones()
         {
             int repeticiones = 0;
@@ -41,6 +56,10 @@ namespace Chatbot.modelos
             return repeticiones;
         }
 
+        /// <summary>
+        /// Saves the log.
+        /// </summary>
+        /// <param name="pathFile">The path file.</param>
         public void saveLog(String pathFile)
         {
             try
@@ -63,6 +82,11 @@ namespace Chatbot.modelos
 
         }
 
+        /// <summary>
+        /// Loads the log.
+        /// </summary>
+        /// <param name="pathFile">The path file.</param>
+        /// <returns></returns>
         public List<String> loadLog(String pathFile)
         {
             List<String> loadLog = new List<String>();

@@ -14,6 +14,9 @@ namespace Chatbot.controladores
         private ControladorChatbot controladorChatbot;
         private ControladorLog controladorLog;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ControladorDialogo"/> class.
+        /// </summary>
         public ControladorDialogo()
         {
             this.vistaDialogo = new VistaDialogo();
@@ -21,11 +24,18 @@ namespace Chatbot.controladores
             controladorChatbot = new ControladorChatbot();
         }
 
+        /// <summary>
+        /// Backs this instance.
+        /// </summary>
         public void back()
         {
             vistaDialogo.show(true);
         }
 
+        /// <summary>
+        /// Iniciars the dialogo.
+        /// </summary>
+        /// <param name="personalidadChatbot">The personalidad chatbot.</param>
         public void iniciarDialogo(int personalidadChatbot)
         {
             vistaDialogo.show(false);
@@ -33,6 +43,9 @@ namespace Chatbot.controladores
             guardarMensaje("|Nombre|");
         }
 
+        /// <summary>
+        /// Finalizars the dialogo.
+        /// </summary>
         public void FinalizarDialogo()
         {
             guardarMensaje(controladorChatbot.finalizarConversacion());
@@ -40,6 +53,9 @@ namespace Chatbot.controladores
 
         }
 
+        /// <summary>
+        /// Interactuars this instance.
+        /// </summary>
         public void interactuar()
         {
             List<String> interacciones = controladorChatbot.adquirirRespuesta();
@@ -51,11 +67,19 @@ namespace Chatbot.controladores
             }
         }
 
+        /// <summary>
+        /// Guardars the mensaje.
+        /// </summary>
+        /// <param name="mensaje">The mensaje.</param>
         public void guardarMensaje(String mensaje)
         {
             controladorLog.addLog(mensaje);
         }
 
+        /// <summary>
+        /// Guardars the mensaje.
+        /// </summary>
+        /// <param name="mensajes">The mensajes.</param>
         public void guardarMensaje(List<String> mensajes)
         {
             controladorLog.addLog(mensajes[0]);
@@ -63,6 +87,10 @@ namespace Chatbot.controladores
             controladorLog.addLog(mensajes[2]);
         }
 
+        /// <summary>
+        /// Adquirirs the identificador.
+        /// </summary>
+        /// <returns></returns>
         public String adquirirIdentificador()
         {
             String identificador;
@@ -70,27 +98,44 @@ namespace Chatbot.controladores
             return identificador;
         }
 
+        /// <summary>
+        /// Starts this instance.
+        /// </summary>
         public void start()
         {
             vistaDialogo.start(this);
         }
 
+        /// <summary>
+        /// Saves the log.
+        /// </summary>
+        /// <param name="pathFile">The path file.</param>
         public void saveLog(String pathFile)
         {
             controladorLog.log.saveLog(pathFile);
         }
 
+        /// <summary>
+        /// Loads the log.
+        /// </summary>
+        /// <param name="pathFile">The path file.</param>
         public void loadLog(String pathFile)
         {
             controladorLog.cargarLog(pathFile);
             rellenarChat();
         }
 
+        /// <summary>
+        /// Rellenars the chat.
+        /// </summary>
         public void rellenarChat()
         {
             controladorChatbot.rellenarChat(controladorLog.log.log);
         }
 
+        /// <summary>
+        /// Adds the datos utiles.
+        /// </summary>
         public void addDatosUtiles()
         {
             guardarMensaje("--------Datos Utiles--------");

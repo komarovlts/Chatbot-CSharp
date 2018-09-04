@@ -11,11 +11,19 @@ namespace Chatbot.modelos
         public int personalidad { get; set; }
         public int evaluaciones { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Sellerbot"/> class.
+        /// </summary>
         public Sellerbot(){
             this.personalidad = 1;
             this.evaluaciones = 5;
         }
 
+        /// <summary>
+        /// Begins the dialog.
+        /// </summary>
+        /// <param name="personalidad">The personalidad.</param>
+        /// <returns></returns>
         public String beginDialog(int personalidad)
         {
             int Hora = getHora();
@@ -47,6 +55,12 @@ namespace Chatbot.modelos
             return saludo;
         }
 
+        /// <summary>
+        /// Dialogs the specified respuesta usuario.
+        /// </summary>
+        /// <param name="respuestaUsuario">The respuesta usuario.</param>
+        /// <param name="identificador">The identificador.</param>
+        /// <returns></returns>
         public List<String> dialog(String respuestaUsuario, String identificador)
         {
             List<String> mensajes = new List<String>();
@@ -117,6 +131,12 @@ namespace Chatbot.modelos
             return mensajes;
         }
 
+        /// <summary>
+        /// Juntars the mensajes.
+        /// </summary>
+        /// <param name="mensaje">The mensaje.</param>
+        /// <param name="nuevoIdentificador">The nuevo identificador.</param>
+        /// <returns></returns>
         public List<String> juntarMensajes(String mensaje, String nuevoIdentificador)
         {
             List<String> mensajes = new List<string>();
@@ -124,8 +144,11 @@ namespace Chatbot.modelos
             mensajes.Add(nuevoIdentificador);
             return mensajes;
         }
-            
-        
+
+        /// <summary>
+        /// Ends the dialog.
+        /// </summary>
+        /// <returns></returns>
         public String endDialog()
         {
             int Hora = getHora();
@@ -157,6 +180,10 @@ namespace Chatbot.modelos
             return despedida;
         }
 
+        /// <summary>
+        /// Gets the hora.
+        /// </summary>
+        /// <returns></returns>
         public int getHora()
         {
             DateTime momentoActual = DateTime.Now;
