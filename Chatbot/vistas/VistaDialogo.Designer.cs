@@ -84,7 +84,7 @@
             this.Controls.Add(this.botonChatbotFormal);
             this.Controls.Add(this.funcionEtiqueta);
             this.Name = "VistaDialogo";
-            this.Text = "VistaDialogo";
+            this.Text = "Chatbot";
             this.ResumeLayout(false);
             this.PerformLayout();
 

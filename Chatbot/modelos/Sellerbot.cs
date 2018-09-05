@@ -6,9 +6,29 @@ using System.Threading.Tasks;
 
 namespace Chatbot.modelos
 {
+    /// <summary>
+    /// En vista que se creó el proyecto con el nombre chatbot, la clase que representaría a este
+    /// debido a restricciones del lenguaje por coincidencias de nombre es que 
+    /// tuvo que ser llamada de una forma diferente, pero igualmente representativa: 
+    /// "Sellerbot" ó Bot Vendedor. 
+    /// </summary>
     public class Sellerbot
     {
+        /// <summary>
+        /// Gets or sets de la personalidad.
+        /// </summary>
+        /// <value>
+        /// El parámetro personalidad representa la personalidad del chatbot,
+        /// definiendo así su comportamiento.
+        /// </value>
         public int personalidad { get; set; }
+        /// <summary>
+        /// Gets or sets de evaluaciones.
+        /// </summary>
+        /// <value>
+        /// El parámetro evaluaciones representa las evaluaciones del chatbot,
+        /// dada las evaluaciones realizadas por el usuario según el desempeño del chatbot.
+        /// </value>
         public int evaluaciones { get; set; }
 
         /// <summary>
@@ -20,10 +40,12 @@ namespace Chatbot.modelos
         }
 
         /// <summary>
-        /// Begins the dialog.
+        /// Comienza el dialogo por parte del Chatbot con un mensaje de bienvenida
+        /// según el tipo de personalidad que elige el usuario.
         /// </summary>
-        /// <param name="personalidad">The personalidad.</param>
-        /// <returns></returns>
+        /// <param name="personalidad">Personalidad elegida por el usuario a través de
+        /// las vistas.</param>
+        /// <returns>Devuelve el saludo correspondiente del Chatbot.</returns>
         public String beginDialog(int personalidad)
         {
             int Hora = getHora();
@@ -56,20 +78,17 @@ namespace Chatbot.modelos
         }
 
         /// <summary>
-        /// Dialogs the specified respuesta usuario.
+        /// Dialogos del chatbot según el último identificador.
         /// </summary>
-        /// <param name="respuestaUsuario">The respuesta usuario.</param>
-        /// <param name="identificador">The identificador.</param>
-        /// <returns></returns>
+        /// <param name="respuestaUsuario">Respuesta del usuario.</param>
+        /// <param name="identificador">útlimo identificador obtenido del log.</param>
+        /// <returns>Devuelve una lista que contiene, en posiciones separadas, los Strings de la respuesta correspondiente al último
+        /// identificador y el nuevo último identificador según esa respuesta.</returns>
         public List<String> dialog(String respuestaUsuario, String identificador)
         {
             List<String> mensajes = new List<String>();
             String mensaje;
             String nuevoIdentificador;
-            /*String advertencia = "Chatbot: Aun no se ha finalizado la conversacion o este ya fue evaluado.";
-            int notaChatbot;
-            int notaUsuario;*/
-            //Start Conversation.
             if (Equals("|Nombre|", identificador))
             {
                 if (this.personalidad == 1)
@@ -126,17 +145,15 @@ namespace Chatbot.modelos
                     mensajes = juntarMensajes(mensaje, nuevoIdentificador);
                 }
             }
-            //End Conversation.
-
             return mensajes;
         }
 
         /// <summary>
-        /// Juntars the mensajes.
+        /// Junta en una lista el mensaje dado por el chatbot y el nuevo identificador final.
         /// </summary>
-        /// <param name="mensaje">The mensaje.</param>
-        /// <param name="nuevoIdentificador">The nuevo identificador.</param>
-        /// <returns></returns>
+        /// <param name="mensaje">Mensaje de respuesta del Chatbot.</param>
+        /// <param name="nuevoIdentificador">Corresponde a un String que representa el nuevo identificador final.</param>
+        /// <returns>Devuelve una lista con el mensaje dado por el chatbot y el nuevo identificador final.</returns>
         public List<String> juntarMensajes(String mensaje, String nuevoIdentificador)
         {
             List<String> mensajes = new List<string>();
@@ -146,14 +163,15 @@ namespace Chatbot.modelos
         }
 
         /// <summary>
-        /// Ends the dialog.
+        /// Termina el dialogo por parte del Chatbot con un mensaje de despedida
+        /// según el tipo de personalidad que elige el usuario.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Devuelve el saludo correspondiente del Chatbot.</returns>
         public String endDialog()
         {
             int Hora = getHora();
             String despedida;
-            if (this.personalidad == 1)
+             if (this.personalidad == 1)
             {
                 if (Hora >= 6 && Hora < 12)
                 {
@@ -181,9 +199,9 @@ namespace Chatbot.modelos
         }
 
         /// <summary>
-        /// Gets the hora.
+        /// Obtiene la hora actual, parámetro necesario para el correcto funcionamiento de otros métodos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Devuelve la hora actual.</returns>
         public int getHora()
         {
             DateTime momentoActual = DateTime.Now;

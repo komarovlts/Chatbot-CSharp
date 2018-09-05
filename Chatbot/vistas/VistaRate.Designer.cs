@@ -112,7 +112,7 @@
             this.Controls.Add(this.rateScroll);
             this.Controls.Add(this.mensajeRate);
             this.Name = "VistaRate";
-            this.Text = "VistaRate";
+            this.Text = "Chatbot";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -116,7 +116,7 @@
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.cajaTextoGrande);
             this.Name = "VistaChatbot";
-            this.Text = "VistaChatbot";
+            this.Text = "Chatbot";
             this.ResumeLayout(false);
             this.PerformLayout();
 

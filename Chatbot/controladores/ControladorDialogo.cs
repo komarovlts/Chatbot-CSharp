@@ -25,7 +25,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Backs this instance.
+        /// Muestra la vista dialogo.
+        /// Interacción entre controladorPrincipal/vista.
         /// </summary>
         public void back()
         {
@@ -33,9 +34,10 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Iniciars the dialogo.
+        /// Inicia el dialogo
+        /// Interacción entre controladorPrincipal/vista.
         /// </summary>
-        /// <param name="personalidadChatbot">The personalidad chatbot.</param>
+        /// <param name="personalidadChatbot">Personalidad del chatbot.</param>
         public void iniciarDialogo(int personalidadChatbot)
         {
             vistaDialogo.show(false);
@@ -44,7 +46,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Finalizars the dialogo.
+        /// Finaliza el dialogo.
+        /// Interacción entre controladorPrincipal/controlador.
         /// </summary>
         public void FinalizarDialogo()
         {
@@ -54,7 +57,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Interactuars this instance.
+        /// Interracción entre usuario y chatbot (forma de representar su dialogo).
+        /// Interacción entre controladorPrincipal/controlador.
         /// </summary>
         public void interactuar()
         {
@@ -68,16 +72,18 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Guardars the mensaje.
+        /// Guarda el mensaje en el log cuando es un String.
+        /// Interacción entre controladorPrincipal/controlador.
         /// </summary>
-        /// <param name="mensaje">The mensaje.</param>
+        /// <param name="mensaje">Mensaje del usuario ó chatbot.</param>
         public void guardarMensaje(String mensaje)
         {
             controladorLog.addLog(mensaje);
         }
 
         /// <summary>
-        /// Guardars the mensaje.
+        /// Guarda el mensaje en el log cuando este es una lista de Strings.
+        /// Interacción entre controladorPrincipal/controlador.
         /// </summary>
         /// <param name="mensajes">The mensajes.</param>
         public void guardarMensaje(List<String> mensajes)
@@ -88,7 +94,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Adquirirs the identificador.
+        /// Adquiere el identificador actual (último en el log).
+        /// Interacción entre controladorPrincipal/modelo.
         /// </summary>
         /// <returns></returns>
         public String adquirirIdentificador()
@@ -99,7 +106,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Starts this instance.
+        /// Inicia la vista dialogo.
+        /// Interacción entre controladorPrincipal/vista.
         /// </summary>
         public void start()
         {
@@ -107,16 +115,18 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Saves the log.
+        /// Guarda el log en la ubicación dada.
+        /// Interacción entre controladorPrincipal/controlador.
         /// </summary>
-        /// <param name="pathFile">The path file.</param>
+        /// <param name="pathFile">Dirección del archivo.</param>
         public void saveLog(String pathFile)
         {
             controladorLog.log.saveLog(pathFile);
         }
 
         /// <summary>
-        /// Loads the log.
+        /// Carga el log en al ubicación dada.
+        /// Interacción entre controladorPrincipal/controlador.
         /// </summary>
         /// <param name="pathFile">The path file.</param>
         public void loadLog(String pathFile)
@@ -126,7 +136,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Rellenars the chat.
+        /// Rellena el chat del chatbot.
+        /// Interacción entre controladorPrincipal/controlador.
         /// </summary>
         public void rellenarChat()
         {
@@ -134,7 +145,10 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Adds the datos utiles.
+        /// Añade datos útiles al final del log,
+        /// este registro sólo es visible en el archivo de texto
+        /// al guardar un log.
+        /// Interacción entre controladorPrincipal/controlador/modelo.
         /// </summary>
         public void addDatosUtiles()
         {

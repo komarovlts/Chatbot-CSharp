@@ -14,7 +14,7 @@ namespace Chatbot.controladores
     public class ControladorChatbot
     {
         private VistaChatbot vistaChatbot;
-        private VistaRate vistaRate;
+        private vistas.VistaRate vistaRate;
         private ControladorDialogo controladorDialogo;
         public Usuario usuario;
         public Sellerbot chatbot;
@@ -29,7 +29,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Starts this instance.
+        /// Inicia la vista chatbot.
+        /// Interacción entre controlador/vista.
         /// </summary>
         public void start()
         {
@@ -37,7 +38,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Starts the rate.
+        /// Inicia la vista de rate.
+        /// Interacción entre controlador/vista.
         /// </summary>
         public void startRate()
         {
@@ -45,7 +47,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Adquirirs the evaluaciones.
+        /// Adquiere la evaluación del chatbot.
+        /// Interacción entre controlador/controladorPrincipal.
         /// </summary>
         public void adquirirEvaluaciones()
         {
@@ -57,7 +60,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Backs this instance.
+        /// Volver a la vista chatbot.
+        /// Interacción entre controlador/vista.
         /// </summary>
         public void back()
         {
@@ -66,11 +70,12 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Iniciars the conversacion.
+        /// Inicia la conversación
+        /// Interacción entre controlador/vista.
         /// </summary>
-        /// <param name="personalidad">The personalidad.</param>
-        /// <param name="controladorDialogo">The controlador dialogo.</param>
-        /// <returns></returns>
+        /// <param name="personalidad">Personalidad del chatbot.</param>
+        /// <param name="controladorDialogo">Controlador Dialogo.</param>
+        /// <returns>Mensaje de inicio de ocnversación con sus parámetros de tiempo</returns>
         public String iniciarConversacion(int personalidad, ControladorDialogo controladorDialogo)
         {
             usuario = new Usuario();
@@ -85,19 +90,25 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Finalizars the conversacion.
+        /// Finaliza la conversación agregando un poco de delay antes
+        /// de cambiar a la ventana de rate, para así mostrar y que sea
+        /// legible el mensaje de despedida antes de desaparecer la vista
+        /// del chatbot.
+        /// Interacción entre controlador/vista.
         /// </summary>
         /// <returns></returns>
         public String finalizarConversacion()
         {
             mensaje = timeStamp(chatbot.endDialog());
             vistaChatbot.escribirEnCajaTextoGrande(mensaje);
+            //Añadir delay.
             DateTime Tthen = DateTime.Now;
             do
             {
                 Application.DoEvents();
             } while (Tthen.AddSeconds(2) > DateTime.Now);
-            vistaRate = new VistaRate();
+            //Final de delay.
+            vistaRate = new vistas.VistaRate();
             startRate();
             vistaChatbot.vaciarChat();
             vistaChatbot.show(false);
@@ -105,16 +116,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Adds the delay.
-        /// </summary>
-        public void addDelay()
-        {
-            int milliseconds = 2000;
-            Thread.Sleep(milliseconds);
-        }
-
-        /// <summary>
-        /// Finalizadors this instance.
+        /// Finalizador del dialogo.
+        /// Interacción entre controlador/controladorPrincipal.
         /// </summary>
         public void finalizador()
         {
@@ -122,7 +125,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Interaccions the con usuario.
+        /// Interacción con el usuario.
+        /// Interacción entre controlador/controladorPrincipal.
         /// </summary>
         public void interaccionConUsuario()
         {
@@ -130,7 +134,9 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Adquirirs the respuesta.
+        /// Adquiere la respuesta del chatbot según la respuesta del usuario
+        /// y el identificador.
+        /// Interacción entre controlador/modelo.
         /// </summary>
         /// <returns></returns>
         public List<String> adquirirRespuesta()
@@ -159,19 +165,21 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Cambiars the estado boton enviar.
+        /// Cambia el estado del botón enviar.
         /// </summary>
-        /// <param name="activar">if set to <c>true</c> [activar].</param>
+        /// <param name="activar">Booleano que activa o desactiva el botón enviar</param>
         public void cambiarEstadoBotonEnviar(bool activar)
         {
             vistaChatbot.estadoBotonEnviar(activar);
         }
 
         /// <summary>
-        /// Conversacions the specified respuesta usuario.
+        /// Conversación entre usuario y chatbot según la respuesta
+        /// del usuario y del último identificador.
+        /// Interacción entre controlador/modelo.
         /// </summary>
-        /// <param name="respuestaUsuario">The respuesta usuario.</param>
-        /// <param name="identificador">The identificador.</param>
+        /// <param name="respuestaUsuario">Respuesta del usuario.</param>
+        /// <param name="identificador">Último identificador del log.</param>
         /// <returns></returns>
         public List<String> conversacion(String respuestaUsuario,String identificador)
         {
@@ -181,9 +189,9 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Tiempoes the actual.
+        /// Adquiere los parámetros de tiempo (hora y fecha) actual del ordenador.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Devuelve un string con los parámetros de tiempo.</returns>
         public String tiempoActual()
         {
             DateTime datosLocales = DateTime.Now;
@@ -193,10 +201,11 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Times the stamp.
+        /// Agrega los parámetros de tiempo (hora y fecha actual)
+        /// a un mensaje.
         /// </summary>
         /// <param name="mensaje">The mensaje.</param>
-        /// <returns></returns>
+        /// <returns>String compuesto entre parámetros de tiempo y el mensaje.</returns>
         public String timeStamp(String mensaje)
         {
             String stringFinal, timeStamp;
@@ -206,9 +215,10 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Rellenars the chat.
+        /// Rellena el chat con el contenido de un log.
+        /// Interacción entre controlador/vista.
         /// </summary>
-        /// <param name="loadLog">The load log.</param>
+        /// <param name="loadLog">log cargado.</param>
         public void rellenarChat(List<String> loadLog)
         {
             vistaChatbot.vaciarChat();
@@ -221,9 +231,10 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Saves the log.
+        /// Guarda el log.
+        /// Interacción entre controlador/vista.
         /// </summary>
-        /// <param name="pathFile">The path file.</param>
+        /// <param name="pathFile">Dirección del archivo.</param>
         public void saveLog(String pathFile)
         {
             controladorDialogo.saveLog(pathFile);
@@ -231,7 +242,8 @@ namespace Chatbot.controladores
         }
 
         /// <summary>
-        /// Loads the log.
+        /// Carga el log.
+        /// Interacción entre controlador/vista.
         /// </summary>
         /// <param name="pathFile">The path file.</param>
         public void loadLog(String pathFile)

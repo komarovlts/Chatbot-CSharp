@@ -7,8 +7,19 @@ using System.Threading.Tasks;
 
 namespace Chatbot.modelos
 {
+    /// <summary>
+    /// Esta clase define el log que contendrá todos los datos de la conversación y 
+    /// todos los parametros que afectan a este.
+    /// </summary>
     public class Log
     {
+        /// <summary>
+        /// Gets or sets de log.
+        /// </summary>
+        /// <value>
+        /// El parámetro log es una lista de Strings donde se irán almacenando
+        /// las interacciones entre el usuario y el chatbot.
+        /// </value>
         public List<String> log { get; set; }
 
         /// <summary>
@@ -20,18 +31,18 @@ namespace Chatbot.modelos
         }
 
         /// <summary>
-        /// Adds the log.
+        /// Añade un mensaje a la lista log.
         /// </summary>
-        /// <param name="mensaje">The mensaje.</param>
+        /// <param name="mensaje">Mensaje dado por el usuario o por el chatbot.</param>
         public void addLog(String mensaje)
         {
             this.log.Add(mensaje);
         }
 
         /// <summary>
-        /// Gets the ultimo.
+        /// Método que adquiere el último String de el Log en cuestión.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>String final del Log implicado.</returns>
         public String getUltimo()
         {
             String ultimoElemento;
@@ -39,10 +50,16 @@ namespace Chatbot.modelos
             return ultimoElemento;
         }
 
+        /*
         /// <summary>
-        /// Searches the repeticiones.
+        /// Este método fue implimentado, pero durante el desarrollo se determinó que no era
+        /// del todo necesario, no obstante, se deja comentado por si en algún momento se decide
+        /// volver a utilizarle.
+        /// Método que busca todas las repeticiones de un identificador en específico,
+        /// esto para ayudar a la autoevaluación del Chatbot.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Número entero que identifica la cantidad de veces que se ha 
+        /// encontrado un error durante la conversación Usuario-Chatbot.</returns>
         public int searchRepeticiones()
         {
             int repeticiones = 0;
@@ -54,12 +71,12 @@ namespace Chatbot.modelos
                 }
             }
             return repeticiones;
-        }
+        }*/
 
         /// <summary>
-        /// Saves the log.
+        /// Método que exporta el log a un archivo de texto .txt.
         /// </summary>
-        /// <param name="pathFile">The path file.</param>
+        /// <param name="pathFile">Dirección en la que se desea guardar el log.</param>
         public void saveLog(String pathFile)
         {
             try
@@ -83,10 +100,10 @@ namespace Chatbot.modelos
         }
 
         /// <summary>
-        /// Loads the log.
+        /// Método que importa desde un archivo de texto al Log actual, reemplazándole.
         /// </summary>
-        /// <param name="pathFile">The path file.</param>
-        /// <returns></returns>
+        /// <param name="pathFile">Dirección de la que se desea cargar el log.</param>
+        /// <returns>Devuelve la lista de interacciones usuario/chatbot llamada log.</returns>
         public List<String> loadLog(String pathFile)
         {
             List<String> loadLog = new List<String>();
