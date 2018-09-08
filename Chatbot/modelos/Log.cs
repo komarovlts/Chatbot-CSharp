@@ -131,6 +131,5 @@ namespace Chatbot.modelos
             }
             return loadLog;
         }
-
     }
 }
